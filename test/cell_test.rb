@@ -26,6 +26,55 @@ class CellTest < Minitest::Test
     assert_equal @cell.ship, cruiser
   end
 
+  def test_is_board_empty?
+    cruiser = Ship.new("Cruiser",3)
+    @cell.place_ship(cruiser)
+    assert_equal @cell.empty?, false
+  end
 
+  def test_ship_been_fired_upon_by_default
+    cruiser = Ship.new("Cruiser",3)
+    @cell.place_ship(cruiser)
+    assert_equal @cell.fired_upon?, false
+  end
+
+  def test_ship_fired_upon_taking_hit
+    cruiser = Ship.new("Cruiser",3)
+    @cell.place_ship(cruiser)
+    @cell.fired_upon
+    assert_equal true, @cell.fired_upon?
+  end
+
+  def test_ship_takes_damage
+    cruiser = Ship.new("Cruiser",3)
+    @cell.place_ship(cruiser)
+    @cell.fired_upon
+    assert_equal @cell.ship.health , 2
+  end
+
+  def test_cell_renders_blank
+
+    assert_equal @cell.render, "."
+  end
+
+  def test_cell_renders_miss
+      @cell.fired_upon
+      assert_equal @cell.render, "M"
+  end
+
+  def test_cell_renders_hit
+    cruiser = Ship.new("Cruiser",3)
+    @cell.place_ship(cruiser)
+    @cell.fired_upon
+    assert_equal @cell.render, "H"
+  end
+
+  def test_cell_renders_sunk
+    cruiser = Ship.new("Cruiser",3)
+    @cell.place_ship(cruiser)
+    3.times do |fired_upon|
+      @cell.fired_upon
+    end
+  end    
 
 end
