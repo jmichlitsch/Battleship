@@ -75,6 +75,6 @@ class CellTest < Minitest::Test
     3.times do |fired_upon|
       @cell.fired_upon
     end
-  end    
+  end
 
 end

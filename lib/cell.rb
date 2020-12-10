@@ -6,7 +6,6 @@ class Cell
               :ship
   def initialize(coordinate)
     @coordinate = coordinate
-    @type = 'Water'
     @ship = nil
     @shot = false
   end
@@ -16,7 +15,6 @@ class Cell
   end
 
   def place_ship(ship)
-    @type = ship
     @ship = ship
   end
 
