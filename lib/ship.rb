@@ -7,7 +7,6 @@ class Ship
     @name = name
     @length = length
     @health = length
-    @health = health
   end
 
 
