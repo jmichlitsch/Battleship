@@ -32,11 +32,11 @@ class Cell
   end
 
   def render
-    if @type = 'Water' && @shot == true
+    if empty? == true && @shot == true
       "M"
-    elsif @type = @ship && @shot == true && ship.sunk? == true
+    elsif empty? == false && @shot == true && ship.sunk? == true
       "X"
-    elsif @type = @ship && @shot == true && ship.sunk? == false
+    elsif empty? == false && @shot == true && ship.sunk? == false
       "H"
     else
       "."
