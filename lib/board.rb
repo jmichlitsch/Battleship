@@ -13,7 +13,6 @@ class Board
           @cells[c] = Cell.new(c)
         end
       end
-#      @cells
   end
 
   def valid_coordinate?(coordinate)
