@@ -56,4 +56,12 @@ class BoardTest < Minitest::Test
     assert_equal true, @board.empty_coordindate?("A1")
   end
 
+  def test_if_ships_overlap
+    cruiser = Ship.new("Cruiser", 3)
+    submarine = Ship.new("Submarine", 2)
+    assert_equal true, @board.valid_placement?(submarine, ["A1", "A2"])
+    # I think place method needs to be called here?
+    assert_equal true, @board.valid_placement?(cruiser,
+    "A1", "A2", "A3")
+  end
 end
