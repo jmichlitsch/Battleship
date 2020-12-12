@@ -57,9 +57,6 @@ def does_not_overlap_with_cells(coordinate)
   true
 end
 
-# ship = Ship.new("gay boat", 3, 5)
-# board = Board.new
-# board.valid_placement?(ship, ["A1", "A2", "A3"])
 def valid_placement?(ship, coordinate)
   ship.length == coordinate.length &&
   consecutive(coordinate) == true && does_not_overlap_with_cells(coordinate)
