@@ -53,7 +53,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_if_coordinates_are_empty_by_default
-    assert_equal true, @board.empty_coordindate?("A1")
+    assert_equal true, @board.does_not_overlap_with_cells(["A1"])
   end
 
   def test_if_ships_overlap
@@ -61,7 +61,14 @@ class BoardTest < Minitest::Test
     submarine = Ship.new("Submarine", 2)
     assert_equal true, @board.valid_placement?(submarine, ["A1", "A2"])
     # I think place method needs to be called here?
-    assert_equal true, @board.valid_placement?(cruiser,
-    "A1", "A2", "A3")
+    assert_equal true, @board.valid_placement?(cruiser, ["A1", "A2", "A3"])
+  end
+
+  def test_board_can_place_ship
+    cruiser = Ship.new("Cruiser", 3)
+    @board.place(cruiser, ["A1", "A2", "A3"])
+    assert_equal @board.cells["A1"].ship, cruiser
+    assert_equal @board.cells["A2"].ship, cruiser
+    assert_equal @board.cells["A3"].ship, cruiser
   end
 end

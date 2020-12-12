@@ -33,7 +33,7 @@ class Cell
     end
   end
 
-  def render
+  def render(default = false)
     if empty? == true && @shot == true
       "M"
     elsif empty? == false && @shot == true && ship.sunk? == true
