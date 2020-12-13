@@ -10,4 +10,8 @@ class Setup
     @player_board = Board.new
     @computer_board = Board.new
   end
+
+  def main_menu
+    puts "Welcome to BATTLESHIP \nEnter p to play. Enter q to quit."
+  end
 end
