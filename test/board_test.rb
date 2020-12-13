@@ -57,18 +57,24 @@ class BoardTest < Minitest::Test
   end
 
   def test_if_ships_overlap
+    skip
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
-    assert_equal true, @board.valid_placement?(submarine, ["A1", "A2"])
+    @board.place(cruiser, ["A1", "A2", "A3"])
+    @board.place(submarine, ["A1", "A2"])
+    assert_equal false, @board.valid_placement?(submarine, ["A1", "A2"])
     # I think place method needs to be called here?
-    assert_equal true, @board.valid_placement?(cruiser, ["A1", "A2", "A3"])
   end
-
   def test_board_can_place_ship
     cruiser = Ship.new("Cruiser", 3)
     @board.place(cruiser, ["A1", "A2", "A3"])
     assert_equal @board.cells["A1"].ship, cruiser
     assert_equal @board.cells["A2"].ship, cruiser
     assert_equal @board.cells["A3"].ship, cruiser
+  end
+
+  def test_board_can_render_empty
+    expected = "  1 2 3 4 \nA . . . .\nB  . . . .\nC  . . . .\nD  . . . .\n "
+    assert_equal @board.render(default = false), expected
   end
 end

@@ -76,9 +76,9 @@ class Board
 
   def render(default = false)
     "   1  2  3  4  \n" +
-    "A  #{@board[0..7]} \n" +
-    "B  #{@board[8..15]} \n" +
-    "C  #{@board[16..23]} \n" +
-    "D  #{@board[23..31]} \n"
+    "A  #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render} \n" +
+    "B  #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render} \n" +
+    "C  #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render} \n" +
+    "D  #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render} \n "
   end
 end
