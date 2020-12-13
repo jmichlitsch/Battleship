@@ -74,7 +74,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_board_can_render_empty
-    expected = "  1 2 3 4 \n A . . . .\n B . . . .\n C . . . .\n D . . . . \n "
+    expected = "  1 2 3 4 \nA . . . .\nB  . . . .\nC  . . . .\nD  . . . .\n "
     assert_equal @board.render(default = false), expected
   end
 end
