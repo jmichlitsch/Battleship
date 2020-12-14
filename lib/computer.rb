@@ -12,8 +12,18 @@ class Computer
     coordniates2 = ["A1","A2"]
     @computer_board.place(ship1, coordinates1)
     @computer_board.place(ship1, coordinates2)
-
   end
 
-
+  def generate_coordinates_for_ship(ship)
+    column = ("A".."D").to_a.sample
+    row = ("1".."4").to_a.sample
+    ship_length = ship.length
+    by_row = false
+    if row + ship_length < 4
+      by_row = true
+    end
+    by_col = false
+    if column.to_ord + ship_length <= "D".to_ord
+      by_col = true
+  end
 end
