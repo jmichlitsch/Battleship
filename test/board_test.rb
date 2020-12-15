@@ -64,6 +64,7 @@ class BoardTest < Minitest::Test
     assert_equal false, @board.valid_placement?(submarine, ["A1", "A2"])
     # I think place method needs to be called here?
   end
+
   def test_board_can_place_ship
     cruiser = Ship.new("Cruiser", 3)
     @board.place(cruiser, ["A1", "A2", "A3"])
@@ -73,7 +74,7 @@ class BoardTest < Minitest::Test
   end
 
   def test_board_can_render_empty
-    expected = "  1 2 3 4 \nA . . . .\nB  . . . .\nC  . . . .\nD  . . . .\n "
+    expected = "  1 2 3 4 \nA  . . . .\nB  . . . .\nC  . . . .\nD  . . . .\n "
     assert_equal @board.render(default = false), expected
   end
 end

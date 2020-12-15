@@ -48,13 +48,10 @@ class Board
   end
 
   def does_not_overlap_with_cells(coordinate)
-    coordinate.each do |coord|
-      cell = @cells[coord]
-      if cell.occupied?
-        false
-      end
+    coordinate.all? do |coord|
+      @cells[coord].empty?
     end
-    true
+
   end
 
   def valid_placement?(ship, coordinate)
@@ -75,10 +72,10 @@ class Board
   end
 
   def render(default = false)
-    "   1  2  3  4  \n" +
+    "  1 2 3 4  \n" +
     "A  #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render} \n" +
     "B  #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render} \n" +
     "C  #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render} \n" +
-    "D  #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render} \n "
+    "D  #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render} \n"
   end
 end
