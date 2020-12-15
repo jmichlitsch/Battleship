@@ -57,7 +57,6 @@ class BoardTest < Minitest::Test
   end
 
   def test_if_ships_overlap
-    skip
     cruiser = Ship.new("Cruiser", 3)
     submarine = Ship.new("Submarine", 2)
     @board.place(cruiser, ["A1", "A2", "A3"])
