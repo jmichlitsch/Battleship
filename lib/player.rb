@@ -3,8 +3,21 @@ class Player
                 :ships,
                 :data
 
-  def initialize(player_board)
-    @player_board = player_board
+  def initialize(board)
+    @board = board
+    @ships = []
   end
+
+  def player_data
+    @data = gets.chomp.upcase
+  end
+
+  def player_place_ship(ship, coordinate)
+    if @board.valid_placement?(ship, coordinate)
+      @board.place(ship, coordinate)
+    else
+      "Those are invalid coordinates. Please try again:"
+    end
+  end
+
 end
-  

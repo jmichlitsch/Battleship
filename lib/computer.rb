@@ -1,10 +1,11 @@
 class Computer
-  attr_reader :computer_board
-              :ships
-  def initialize(computer_board)
-    @computer_board = computer_board
+  attr_reader :board,
+              :ships,
+              :valid_targets
+  def initialize(board)
+    @board = board
     @ships = []
-  #  @valid_targets =
+    @valid_targets = @board.cells.keys.shuffle
   end
 
 
@@ -18,21 +19,32 @@ class Computer
     # @computer_board.place(ship1, coordinates2)
   end
 
-  def generate_coordinates_for_ship(ship)
-    column = ("A".."D").to_a.sample
-    row = ("1".."4").to_a.sample
-    ship_length = ship.length
-    by_row = false
-    if row + ship_length < 4
-      by_row = true
+  def generate_coordinates_for_ship(ship, length)
+    # column = ("A".."D").to_a.sample
+    # row = ("1".."4").to_a.sample
+    # ship_length = ship.length
+    # by_row = false
+    # if row + ship_length < 4
+    #   by_row = true
+    # end
+    # by_column = false
+    # if column.to_ord + ship_length <= "D".to_ord
+    #   by_column = true
+    # end
+    coordinates = []
+    until board.valid_placement?(ship, coordinates)
+      computer_coordinates = board.cells.keys.sample(length)
+      coordinates = computer_coordinates
     end
-    by_column = false
-    if column.to_ord + ship_length <= "D".to_ord
-      by_column = true
-    end
+    coordinates
   end
 
-  def computer_place_ship(ship, coordinates)
-    coordinates = generate_coordinates_for_ship
+  def computer_place_ship(ship)
+    coordinates = generate_coordinates_for_ship(ship, ship.length)
+    @board.place(ship, coordinates)
+  end
+
+  def where_computer_shoots_next
+    @valid_targets.shift
   end
 end

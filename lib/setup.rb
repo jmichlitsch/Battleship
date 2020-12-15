@@ -32,9 +32,9 @@ class Setup
   end
 
   def exit_game
-
-  end
     
+  end
+
   def instructions
     puts "I have laid out my ships on the grid. \nYou now need to lay out your two ships. \nThe Cruiser is three units long and the Submarine is two units long."
   end
