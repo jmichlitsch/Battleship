@@ -32,5 +32,13 @@ class ComputerTest < Minitest::Test
     @computer.where_computer_shoots_next
     assert_equal @computer.valid_targets.count, 15
   end
-  
+
+  def test_computer_can_lose
+    cruiser = Ship.new("Cruiser",3)
+    submarine = Ship.new("Submarine", 2)
+    @computer.ships.push(cruiser)
+    assert_equal @computer.computer_has_lost?, false
+    3.times {cruiser.hit}
+    assert_equal @computer.computer_has_lost?, true
+  end
 end

@@ -45,4 +45,11 @@ class Turn
     end
   end
 
+  def new_turn
+    display
+    player_shoots
+    computer_shoots
+    results_of_shot
+  end  
+
 end
