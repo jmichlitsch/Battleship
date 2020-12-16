@@ -12,13 +12,14 @@ class Player
     @data = gets.chomp.upcase
   end
 
-  def player_place_ship(ship, coordinate)
-    if @board.valid_placement?(ship, coordinate)
-      @board.place(ship, coordinate)
-    else
-      "Those are invalid coordinates. Please try again:"
+  def place_player_ship
+  @player.ships.each do |ship|
+    puts "Please enter coordinates for a ship of length: #{ship.length}"
+    until @player_board.place(ship, @player.player_data) == true
+      puts 'Those are invalid coordinates. Please try again.'
     end
   end
+end
 
   def player_has_lost?
     @ships.all? do |ship|

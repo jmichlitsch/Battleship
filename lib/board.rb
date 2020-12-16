@@ -3,7 +3,7 @@ class Board
   attr_accessor :cells
   def initialize
     @cells = {}
-    create_board
+     create_board
   end
 
   def create_board
@@ -61,13 +61,17 @@ class Board
   end
 
   def place(ship, coordinate)
-    valid = self.valid_placement?(ship, coordinate)
+    if coordinate.is_a?(String)
+      coordinate = coordinate.split
+    end
+    valid = valid_placement?(ship, coordinate)
     # ["C1", "C2", "C3"]
     if valid
       coordinate.each do |coord|
         cell_object = @cells[coord]
         cell_object.place_ship(ship)
       end
+      true
     end
   end
 
