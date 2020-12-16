@@ -2,7 +2,8 @@ class Computer
   attr_accessor :ships
   attr_reader :computer_board,
               # :ships,
-              :valid_targets
+              :valid_targets,
+              :data
   def initialize(computer_board)
     @computer_board = computer_board
     @ships = []
@@ -17,7 +18,7 @@ class Computer
      @ships.append(ship2)
      @ships
    end
-   
+
   def generate_coordinates_for_ship(ship, length)
     # column = ("A".."D").to_a.sample
     # row = ("1".."4").to_a.sample
@@ -44,12 +45,13 @@ class Computer
   end
 
   def where_computer_shoots_next
-    @valid_targets.shift
+    @data = @valid_targets.shift
+    @data
   end
 
-  def computer_has_lost?
+  def has_lost?
     @ships.all? do |ship|
-    ship.sunk?
+      ship.sunk?
     end
   end
 end

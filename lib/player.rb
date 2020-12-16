@@ -13,17 +13,17 @@ class Player
   end
 
   def place_player_ship
-  @player.ships.each do |ship|
-    puts "Please enter coordinates for a ship of length: #{ship.length}"
-    until @player_board.place(ship, @player.player_data) == true
-      puts 'Those are invalid coordinates. Please try again.'
+    @player.ships.each do |ship|
+      puts "Please enter coordinates for a ship of length: #{ship.length}"
+      until @player_board.place(ship, @player.player_data) == true
+        puts 'Those are invalid coordinates. Please try again.'
+      end
     end
   end
-end
 
-  def player_has_lost?
+  def has_lost?
     @ships.all? do |ship|
-    ship.sunk?
+      ship.sunk?
     end
   end
 end
