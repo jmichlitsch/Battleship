@@ -31,18 +31,23 @@ class Turn
     player_board.valid_target(@computer.where_computer_shoots_next)
   end
 
-  def results_of_turn
-    puts "Your shot on #{@player.data} was a #{results_of_shot(@computer_board, @player.data)}."
-    puts "My shot on #{@computer.where_computer_shoots_next} was a #{results_of_shot(@player_board, @computer.where_computer_shoots_next)} "
-  end
+  def results_of_player_shot
+      if @computer_board.cells[@player.data].render == "X"
+          puts "Your shot on #{@player.data} was a hit and you sunk the #{@computer_board.cells[@player.data].ship.name}."
+      elsif @computer_board.cells[@player.data].render == "H"
+          puts "Your shot on #{@player.data} was a hit."
+      else @computer_board.cells[@player.data].render == "M"
+        puts "Your shot on #{@player.data} was a miss."
+      end
+    end
 
-  def results_of_shot(board, target)
-    if board.cells[target].render == "X"
-      puts "hit and you sunk the #{board.cells[target].ship.name}"
-    elsif board.cells[target].render == "H"
-      puts "hit"
-    else board.cells[target].render == "M"
-      puts "miss"
+  def results_of_computer_shot
+    if @player_board.cells[@computer.data].render == "X"
+      puts "My shot on #{@computer.data} was a hit and I sunk the #{@player_board.cells[@computer.data].ship.name}."
+    elsif @player_board.cells[@computer.data].render == "H"
+      puts "My shot on #{@computer.data} was a hit."
+    else @player_board.cells[@computer.data].render == "M"
+      puts "My shot on #{@computer.data} was a miss."
     end
   end
 
@@ -50,8 +55,10 @@ class Turn
     display
     player_shoots
     computer_shoots
-    results_of_turn
-    results_of_shot(@player_board, @player.data)
+    # results_of_turn
+    # results_of_shot(@player_board, @player.data)
+    results_of_computer_shot
+    results_of_player_shot
   end
 
 end

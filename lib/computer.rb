@@ -2,7 +2,8 @@ class Computer
   attr_accessor :ships
   attr_reader :computer_board,
               # :ships,
-              :valid_targets
+              :valid_targets,
+              :data
   def initialize(computer_board)
     @computer_board = computer_board
     @ships = []
@@ -44,7 +45,8 @@ class Computer
   end
 
   def where_computer_shoots_next
-    @valid_targets.shift
+    @data = @valid_targets.shift
+    @data
   end
 
   def has_lost?

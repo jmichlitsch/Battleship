@@ -34,6 +34,7 @@ class Setup
     place_player_ship
     play_game
     display_winner
+    main_menu
     # start the game, taking turns with each other
   end
 
@@ -84,5 +85,13 @@ class Setup
     while !@player.has_lost? and !@computer.has_lost?
     turn.new_turn
     end
-  end  
+  end
+
+  def display_winner
+   if !@player.has_lost?
+     puts "You have won."
+   else
+     puts "I have won."
+   end
+ end
 end
