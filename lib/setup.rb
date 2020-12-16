@@ -29,9 +29,10 @@ class Setup
     computer.computer_place_ship
     instructions
     get_player_ships
-
+    place_player_ship
     # start the game, taking turns with each other
   end
+
 
   def exit_game
 
@@ -44,6 +45,26 @@ class Setup
   def get_player_ships
     valid_ships = [Ship.new("Cruiser", 3), Ship.new("Submarine", 2)]
     player.ships = valid_ships
-  end  
+  end
 
+  def place_player_ship
+    until @player_board.place(ship,@player.player_data) == true
+      "Those are invalid coordinates. Please try again."
+    end
+  end
+
+  def take_turn
+    valid_turn= Turn.new(player, player_board, computer, computer_board)
+    valid_turn.new_turn
+  end
+
+  def  play_game
+    new_game = Setup.new
+    new_game.start_game
+    until new_game.player.player_has_lost? or
+      new_game.computer.computer_has_lost
+    false
+    new_game.take_turn
+    end
+  end
 end

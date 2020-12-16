@@ -5,7 +5,7 @@ class Computer
   def initialize(board)
     @board = board
     @ships = []
-    @valid_targets = @board.cells.keys.shuffle
+    @valid_targets = board.cells.keys.shuffle
   end
 
 
@@ -46,5 +46,11 @@ class Computer
 
   def where_computer_shoots_next
     @valid_targets.shift
+  end
+
+  def computer_has_lost?
+    @ships.all? do |ship|
+    ship.sunk?
+    end
   end
 end
