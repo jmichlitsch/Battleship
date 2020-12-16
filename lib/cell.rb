@@ -34,14 +34,14 @@ class Cell
   end
 
   def render(default = false)
-    if default == true && empty? == false
-      "S"
-    elsif empty? == true && @shot == true
+    if empty? == true && @shot == true
       "M"
     elsif empty? == false && @shot == true && ship.sunk? == true
       "X"
     elsif empty? == false && @shot == true && ship.sunk? == false
       "H"
+    elsif default == true && empty? == false
+      "S"
     else
       "."
     end

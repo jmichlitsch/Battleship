@@ -76,8 +76,11 @@ class Board
   end
 
   def valid_target(target)
+    target = target
     if valid_coordinate?(target)
-      !@cells[target].fire_upon?
+      !@cells[target].fired_upon?
+    else
+      false
     end
   end
 
@@ -87,9 +90,9 @@ class Board
 
   def render(default = false)
     " 1 2 3 4 \n" +
-    "A    #{@cells["A1"].render} #{@cells["A2"].render} #{@cells["A3"].render} #{@cells["A4"].render}\n" +
-    "B    #{@cells["B1"].render} #{@cells["B2"].render} #{@cells["B3"].render} #{@cells["B4"].render}\n" +
-    "C    #{@cells["C1"].render} #{@cells["C2"].render} #{@cells["C3"].render} #{@cells["C4"].render}\n" +
-    "D    #{@cells["D1"].render} #{@cells["D2"].render} #{@cells["D3"].render} #{@cells["D4"].render}\n"
+    "A    #{@cells["A1"].render(default)} #{@cells["A2"].render(default)} #{@cells["A3"].render(default)} #{@cells["A4"].render(default)}\n" +
+    "B    #{@cells["B1"].render(default)} #{@cells["B2"].render(default)} #{@cells["B3"].render(default)} #{@cells["B4"].render(default)}\n" +
+    "C    #{@cells["C1"].render(default)} #{@cells["C2"].render(default)} #{@cells["C3"].render(default)} #{@cells["C4"].render(default)}\n" +
+    "D    #{@cells["D1"].render(default)} #{@cells["D2"].render(default)} #{@cells["D3"].render(default)} #{@cells["D4"].render(default)}\n"
   end
 end
