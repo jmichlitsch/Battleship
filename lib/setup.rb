@@ -2,7 +2,7 @@ class Setup
   attr_reader :player,
               :computer,
               :player_board,
-              :computer_board
+              :computer_board,
               :ships
 
   def initialize
@@ -32,7 +32,8 @@ class Setup
     instructions
     get_player_ships
     place_player_ship
-    take_turn
+    play_game
+    display_winner
     # start the game, taking turns with each other
   end
 
@@ -63,12 +64,25 @@ class Setup
     valid_turn.new_turn
   end
 
-  def play_game
-    new_game = Setup.new
-    new_game.start_game
-    until new_game.player.player_has_lost? or
-      new_game.computer.computer_has_lost == false
-      new_game.take_turn
+   def play_game
+  #   new_game = Setup.new
+  #   new_game.main_menu
+  #   loop do
+  #     new_game.take_turn
+  #     if @computer.computer_has_lost?
+  #       puts "You won.\n"
+  #       main_menu
+  #       break
+  #     elsif @player.player_has_lost?
+  #       puts "I won.\n"
+  #       main_menu
+  #       break
+  #     end
+  #   end
+  # end
+    turn = Turn.new(@player, @player_board, @computer, @computer_board)
+    while !@player.has_lost? and !@computer.has_lost?
+    turn.new_turn
     end
-  end
+  end  
 end

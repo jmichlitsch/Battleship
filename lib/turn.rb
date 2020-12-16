@@ -50,6 +50,7 @@ class Turn
     display
     player_shoots
     computer_shoots
+    results_of_turn
     results_of_shot(@player_board, @player.data)
   end
 

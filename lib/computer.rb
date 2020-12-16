@@ -17,7 +17,7 @@ class Computer
      @ships.append(ship2)
      @ships
    end
-   
+
   def generate_coordinates_for_ship(ship, length)
     # column = ("A".."D").to_a.sample
     # row = ("1".."4").to_a.sample
@@ -47,7 +47,7 @@ class Computer
     @valid_targets.shift
   end
 
-  def computer_has_lost?
+  def has_lost?
     @ships.all? do |ship|
     ship.sunk?
     end

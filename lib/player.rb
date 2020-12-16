@@ -21,7 +21,7 @@ class Player
   end
 end
 
-  def player_has_lost?
+  def has_lost?
     @ships.all? do |ship|
     ship.sunk?
     end
