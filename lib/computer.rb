@@ -1,23 +1,23 @@
 class Computer
-  attr_reader :board,
-              :ships,
-              :valid_targets
-  def initialize(board)
-    @board = board
+  attr_accessor :ships
+  attr_reader :computer_board,
+              # :ships,
+              :valid_targets,
+              :data
+  def initialize(computer_board)
+    @computer_board = computer_board
     @ships = []
     @valid_targets = board.cells.keys.shuffle
   end
 
 
   def create_computer_board
-    # create 2 ships
-    ship1 = Ship.new("Cruiser", 3)
-    ship2 = Ship.new("Submarine", 2)
-    # coordinates1 = ["B1", "B2", "B3"]
-    # coordniates2 = ["A1","A2"]
-    # @computer_board.place(ship1, coordinates1)
-    # @computer_board.place(ship1, coordinates2)
-  end
+     ship1 = Ship.new('Cruiser', 3)
+     ship2 = Ship.new('Submarine', 2)
+     @ships.append(ship1)
+     @ships.append(ship2)
+     @ships
+   end
 
   def generate_coordinates_for_ship(ship, length)
     # column = ("A".."D").to_a.sample
@@ -45,12 +45,13 @@ class Computer
   end
 
   def where_computer_shoots_next
-    @valid_targets.shift
+    @data = @valid_targets.shift
+    @data
   end
 
-  def computer_has_lost?
+  def has_lost?
     @ships.all? do |ship|
-    ship.sunk?
+      ship.sunk?
     end
   end
 end

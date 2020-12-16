@@ -30,12 +30,8 @@ class Setup
     instructions
     get_player_ships
     place_player_ship
-    # start the game, taking turns with each other
-  end
-
-
-  def exit_game
-
+    play_game
+    display_winner
   end
 
   def instructions
@@ -48,23 +44,26 @@ class Setup
   end
 
   def place_player_ship
-    until @player_board.place(ship,@player.player_data) == true
-      "Those are invalid coordinates. Please try again."
+    @player.ships.each do |ship|
+      puts "Please enter coordinates for a ship of length: #{ship.length}"
+      until @player_board.place(ship, @player.player_data) == true
+        puts 'Those are invalid coordinates. Please try again.'
+      end
     end
   end
 
-  def take_turn
-    valid_turn= Turn.new(player, player_board, computer, computer_board)
-    valid_turn.new_turn
+  def play_game
+    turn = Turn.new(@player, @player_board, @computer, @computer_board)
+    while !@player.has_lost? and !@computer.has_lost?
+      turn.new_turn
+    end
   end
 
-  def  play_game
-    new_game = Setup.new
-    new_game.start_game
-    until new_game.player.player_has_lost? or
-      new_game.computer.computer_has_lost
-    false
-    new_game.take_turn
+  def display_winner
+    if !@player.has_lost?
+      puts "You have won."
+    else
+      puts "I have won."
     end
   end
 end
