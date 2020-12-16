@@ -18,6 +18,8 @@ class Computer
     # coordniates2 = ["A1","A2"]
     # @computer_board.place(ship1, coordinates1)
     # @computer_board.place(ship1, coordinates2)
+    @ships.append(ship1)
+    @ships.append(ship2)
   end
 
   def generate_coordinates_for_ship(ship, length)

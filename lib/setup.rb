@@ -3,6 +3,7 @@ class Setup
               :computer,
               :player_board,
               :computer_board
+              :ships
 
   def initialize
     @player_board = Board.new
@@ -25,7 +26,8 @@ class Setup
 
   def start_game
     computer.create_computer_board
-    computer.computer_place_ship(@ship)
+    computer.computer_place_ship(@computer.ships[0])
+    computer.computer_place_ship(@computer.ships[1])
     instructions
     get_player_ships
     place_player_ship
@@ -49,6 +51,11 @@ class Setup
   def place_player_ship
     until @player_board.place(ship,@player.player_data) == true
       "Those are invalid coordinates. Please try again."
+      def place_player_ship
+    until @player_board.place(@computer.ships[0],@player.player_data) == true
+      "Those are invalid coordinates. Please try again."
+    end
+  end
     end
   end
 
