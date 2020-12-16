@@ -3,13 +3,12 @@ class Setup
               :computer,
               :player_board,
               :computer_board
-              :ships
 
   def initialize
-    @player = Player.new(@player_board)
-    @computer = Computer.new(@computer_board)
     @player_board = Board.new
     @computer_board = Board.new
+    @player = Player.new(@player_board)
+    @computer = Computer.new(@computer_board)
   end
 
   def main_menu
@@ -26,7 +25,7 @@ class Setup
 
   def start_game
     computer.create_computer_board
-    computer.computer_place_ship
+    computer.computer_place_ship(@ship)
     instructions
     get_player_ships
     place_player_ship

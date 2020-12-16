@@ -2,9 +2,8 @@ class Board
 
   attr_accessor :cells
   def initialize
-    create_board
     @cells = {}
-    # create_board
+     create_board
   end
 
   def create_board

@@ -5,7 +5,7 @@ require './lib/computer'
 require './lib/setup'
 require './lib/turn'
 require './lib/player'
-require './lib/game'
+# require './lib/game'
 
 run_game = Setup.new
 

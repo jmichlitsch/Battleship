@@ -1,7 +1,7 @@
 class Cell
 
-  attr_accessor :type,
-                :shot
+  # attr_accessor :type,
+  #               :shot
   attr_reader :coordinate,
               :ship
   def initialize(coordinate)
