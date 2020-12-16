@@ -11,10 +11,10 @@ class Turn
   end
 
   def display
-    puts "\n=============COMPUTER BOARD=============\n
+    puts "\n\n\n\n\n\n\n\n=============COMPUTER BOARD=============\n
     #{computer_board.render}
     \n==============PLAYER BOARD==============
-    #{player_board.render(true)}"
+    #{player_board.render(true)}\n\n\n\n\n\n\n\n"
   end
 
   def player_shoots
@@ -29,11 +29,7 @@ class Turn
 
   def computer_shoots
     player_board.valid_target(@computer.where_computer_shoots_next)
-  end
-
-  def results_of_turn
-    puts "Your shot on #{@player.data} was a #{results_of_shot(@computer_board, @player.data)}."
-    puts "My shot on #{@computer.where_computer_shoots_next} was a #{results_of_shot(@player_board, @computer.where_computer_shoots_next)} "
+    player_board.shoot(@computer.data)
   end
 
   def results_of_player_shot

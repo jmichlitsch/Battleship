@@ -2,7 +2,7 @@ class Setup
   attr_reader :player,
               :computer,
               :player_board,
-              :computer_board
+              :computer_board,
               :ships
 
   def initialize
@@ -20,8 +20,13 @@ class Setup
     elsif response == "q"
       exit_game
     else
-      "Invalid Response, \nEnter p to play. Enter q to quit."
+    puts  "Invalid Response"
+    main_menu
     end
+  end
+
+  def exit_game
+    puts "Leaving Game"
   end
 
   def start_game
@@ -34,6 +39,7 @@ class Setup
     place_player_ship
     play_game
     display_winner
+    main_menu
   end
 
   def instructions
