@@ -61,15 +61,19 @@ class Board
   end
 
   def place(ship, coordinate)
-    valid = self.valid_placement?(ship, coordinate)
-    # ["C1", "C2", "C3"]
-    if valid
-      coordinate.each do |coord|
-        cell_object = @cells[coord]
-        cell_object.place_ship(ship)
+      if coordinate.is_a?(String)
+        coordinate = coordinate.split
+      end
+      valid = valid_placement?(ship, coordinate)
+      # ["C1", "C2", "C3"]
+      if valid
+        coordinate.each do |coord|
+          cell_object = @cells[coord]
+          cell_object.place_ship(ship)
+        end
+        true
       end
     end
-  end
 
   def valid_target(target)
     if valid_coordinate?(target)

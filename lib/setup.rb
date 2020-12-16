@@ -25,15 +25,15 @@ class Setup
   end
 
   def start_game
-    computer.create_computer_board
-    computer.computer_place_ship(@computer.ships[0])
-    computer.computer_place_ship(@computer.ships[1])
-    instructions
-    get_player_ships
-    place_player_ship
-    # start the game, taking turns with each other
+  ships = computer.create_computer_board
+  ships.each do |ship|
+    computer.computer_place_ship(ships)
   end
-
+  instructions
+  get_player_ships
+  place_player_ship
+  # start the game, taking turns with each other
+end
 
   def exit_game
 
@@ -49,15 +49,13 @@ class Setup
   end
 
   def place_player_ship
-    until @player_board.place(ship,@player.player_data) == true
-      "Those are invalid coordinates. Please try again."
-      def place_player_ship
-    until @player_board.place(@computer.ships[0],@player.player_data) == true
-      "Those are invalid coordinates. Please try again."
-    end
-  end
-    end
-  end
+   until @player_board.place(@player.ships[0],@player.player_data) == true
+     "Those are invalid coordinates. Please try again."
+   end
+   until @player_board.place(@player.ships[1],@player.player_data) == true
+     "Those are invalid coordinates. Please try again."
+   end
+ end
 
   def take_turn
     valid_turn= Turn.new(player, player_board, computer, computer_board)
